@@ -1,10 +1,10 @@
 import fs from "fs";
-import nock from "nock/types";
+import nock, { Definition } from "nock/types";
 import path from "path";
 
 export const saveTape = (
   tapeName: string,
-  data: string[] | nock.Definition[]
+  data: string[] | Definition[] | string | Definition
 ) => {
   return new Promise<void>((resolve) => {
     fs.mkdir(path.join(__dirname, "__tapes__"), () => {
