@@ -7,7 +7,7 @@ export const fetchCurrencies = async (
   currency: string,
   dateFrom?: string,
   dateTo?: string
-) => {
+): Promise<ICurrency> => {
   if (!(dateFrom && dateTo)) {
     var date = new Date();
     date.setDate(date.getDate() - 1);
@@ -29,7 +29,7 @@ export const fetchCurrencies = async (
   }
 };
 
-export const calculateMidCurrencies = (currency: ICurrency) => {
+export const calculateMidCurrencies = (currency: ICurrency): number => {
   let sum = 0;
   currency.rates.forEach((rate) => {
     sum += rate.mid;
@@ -40,9 +40,10 @@ export const calculateMidCurrencies = (currency: ICurrency) => {
 export const calculateCurrenciesDiff = (
   currency1: ICurrency,
   currency2: ICurrency
-) => {
+): number => {
   let diff = 0;
   diff =
-    Math.round((currency2.rates[0].mid - currency1.rates[0].mid) * 1000) / 1000;
+    Math.round((currency2.rates[0].mid - currency1.rates[0].mid) * 10000) /
+    10000;
   return diff;
 };

@@ -73,6 +73,6 @@ describe("testing currencies", () => {
       ],
     };
     const mid = calculateCurrenciesDiff(response1, response2);
-    expect(mid).toEqual(Math.round((4.391 - 4.2193) * 1000) / 1000);
+    expect(mid).toEqual(Math.round((4.391 - 4.2193) * 10000) / 10000);
   });
 });
