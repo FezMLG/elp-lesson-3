@@ -13,11 +13,15 @@ export const fetchCurrencies = async (
     dateFrom = format(date, "yyyy-MM-dd");
     dateTo = format(date, "yyyy-MM-dd");
   }
-  const response = await fetch(
-    `https://api.nbp.pl/api/exchangerates/rates/a/${currency}/${dateFrom}/${dateTo}/?format=json`
-  );
-  const data = (await response.json()) as ICurrency;
-  return data;
+  try {
+    const response = await fetch(
+      `https://api.nbp.pl/api/exchangerates/rates/a/${currency}/${dateFrom}/${dateTo}/?format=json`
+    );
+    const data = (await response.json()) as ICurrency;
+    return data;
+  } catch (e) {
+    throw new Error(`API Error: ${e}`);
+  }
 };
 
 export const calculateMidCurrencies = (currency: ICurrency) => {
