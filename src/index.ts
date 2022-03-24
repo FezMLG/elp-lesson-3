@@ -25,5 +25,5 @@ export const calculateMidCurrencies = (currency: ICurrency) => {
   currency?.rates.forEach((rate) => {
     sum += rate.mid;
   });
-  return sum / currency?.rates.length;
+  return Math.round((sum / currency?.rates.length) * 10000) / 10000;
 };

@@ -35,25 +35,18 @@ test.each(["USD", "EUR"])(
   async (currency) => {
     const dateFrom = "2022-03-01";
     const dateTo = "2022-03-07";
-    const response: ICurrency = await fetchCurrencies(
-      currency,
-      dateFrom,
-      dateTo
-    );
+    try {
+      const response: ICurrency = await fetchCurrencies(
+        currency,
+        dateFrom,
+        dateTo
+      );
+    } catch {
+      throw new Error("error with api");
+    }
     const mid = calculateMidCurrencies(response);
     console.log(mid);
-    // expect(response).toEqual({
-    //   table: expect.any(String),
-    //   currency: expect.any(String),
-    //   code: currency,
-    //   rates: [
-    //     {
-    //       no: expect.any(String),
-    //       effectiveDate: expect.any(String),
-    //       mid: expect.any(Number),
-    //     },
-    //   ],
-    // });
+    expect(mid).toBe(Number);
   }
 );
 
