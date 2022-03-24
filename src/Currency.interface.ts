@@ -1,5 +1,5 @@
 export interface ICurrency {
-  table: string;
+  table: "A" | "B" | "C";
   currency: string;
   code: string;
   rates: IRates[];

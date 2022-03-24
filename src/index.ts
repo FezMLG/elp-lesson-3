@@ -15,7 +15,7 @@ export const fetchCurrencies = async (
   }
   try {
     const response = await fetch(
-      `https://api.nbp.pl/api/exchangerates/rates/a/${currency}/${dateFrom}/${dateTo}/?format=json`
+      `https://api.nbp.pl/api/exchangerates/rates/A/${currency}/${dateFrom}/${dateTo}/?format=json`
     );
     const data = (await response.json()) as ICurrency;
     return data;
