@@ -1,4 +1,4 @@
-import { generateTypes } from "./test-utils/generateTypes";
+import { generateTypes } from "../test-utils/generateTypes";
 
 test.skip("creates exchange rate types", async () => {
   await generateTypes(

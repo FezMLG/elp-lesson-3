@@ -1,6 +1,10 @@
 import fetch from "node-fetch";
-import { calculateMidCurrencies, fetchCurrencies } from "./index";
-import { ICurrency } from "./interfaces/Currency.interface";
+import {
+  calculateCurrenciesDiff,
+  calculateMidCurrencies,
+  fetchCurrencies,
+} from "../index";
+import { ICurrency } from "../interfaces/Currency.interface";
 
 describe("api test", () => {
   test("api test", async () => {
@@ -49,5 +53,26 @@ describe("testing currencies", () => {
     expect(mid).toEqual(
       Math.round(((4.2193 + 4.3302 + 4.3257 + 4.391) / 4) * 10000) / 10000
     );
+  });
+
+  test("should return difference between currencies rates from two dates", async () => {
+    const response1: ICurrency = {
+      table: "A",
+      currency: "dolar amerykański",
+      code: "USD",
+      rates: [
+        { no: "041/A/NBP/2022", effectiveDate: "2022-03-01", mid: 4.2193 },
+      ],
+    };
+    const response2: ICurrency = {
+      table: "A",
+      currency: "dolar amerykański",
+      code: "USD",
+      rates: [
+        { no: "044/A/NBP/2022", effectiveDate: "2022-03-04", mid: 4.391 },
+      ],
+    };
+    const mid = calculateCurrenciesDiff(response1, response2);
+    expect(mid).toEqual(Math.round((4.391 - 4.2193) * 1000) / 1000);
   });
 });
