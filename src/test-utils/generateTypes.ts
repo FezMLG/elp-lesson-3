@@ -19,7 +19,7 @@ export const generateTypes = async (url: string, name: string) => {
     rendererOptions: { "just-types": "true" },
   });
   fs.writeFile(
-    `${__dirname}/types/${name}.interface.ts`,
+    `${__dirname}/../interfaces/${name}.interface.ts`,
     serializedRenderResult.lines.join("\n"),
     () => {}
   );
