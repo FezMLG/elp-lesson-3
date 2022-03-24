@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { fetchCurrencies } from "./index";
+import { calculateMidCurrencies, fetchCurrencies } from "./index";
 import { ICurrency } from "./Currency.interface";
 
 test("api test", async () => {
@@ -27,6 +27,33 @@ test.each(["USD", "EUR"])(
         },
       ],
     });
+  }
+);
+
+test.each(["USD", "EUR"])(
+  "should return actual currencies between dates",
+  async (currency) => {
+    const dateFrom = "2022-03-01";
+    const dateTo = "2022-03-07";
+    const response: ICurrency = await fetchCurrencies(
+      currency,
+      dateFrom,
+      dateTo
+    );
+    const mid = calculateMidCurrencies(response);
+    console.log(mid);
+    // expect(response).toEqual({
+    //   table: expect.any(String),
+    //   currency: expect.any(String),
+    //   code: currency,
+    //   rates: [
+    //     {
+    //       no: expect.any(String),
+    //       effectiveDate: expect.any(String),
+    //       mid: expect.any(Number),
+    //     },
+    //   ],
+    // });
   }
 );
 
