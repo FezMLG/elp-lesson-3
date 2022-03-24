@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { calculateMidCurrencies, fetchCurrencies } from "./index";
-import { ICurrency } from "./Currency.interface";
+import { ICurrency } from "./interfaces/Currency.interface";
 
 describe("api test", () => {
   test("api test", async () => {

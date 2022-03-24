@@ -1,4 +1,4 @@
-import { ICurrency } from "./Currency.interface";
+import { ICurrency } from "./interfaces/Currency.interface";
 import fetch from "node-fetch";
 import { format } from "date-fns";
 
